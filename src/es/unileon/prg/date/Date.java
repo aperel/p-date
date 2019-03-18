@@ -2,9 +2,9 @@ package es.unileon.prg.date;
 
 public class Date {
 
-	private int _day;
-	private int _month;
-	private int _year;
+	private int _day=5;
+	private int _month=12;
+	private int _year=2015;
 
 	public Date(int day, int month, int year) throws DateException{
 		this._year = year;
@@ -17,13 +17,33 @@ public class Date {
 		//TODO falta comprobar el dia
 
 
-		if (day < 1 || day > 31) {
+		if ((day > 0) && (day < DaysOfMonth(month))) {
+			this._day = day;
+			
+		}else{
 			throw new DateException("Dia " + day + " no valido" +
 					" Valores posibles entre 1 y 31.");
-		} else {
-			this._day = day;
 		}
 	}
+public void isSameYear(int year){
+
+ this._year=year;
+
+}
+
+public void isSameMonth(int month){
+
+ this._month=month;
+
+}
+
+public void isSameDay(int day){
+
+ this._day=day;
+
+}
+
+
 
 public boolean isSameYearIf(int year){
 
@@ -39,7 +59,7 @@ boolean igual= false;
 	}
 }
 
-public boolean isSameMont(int month){
+public boolean isSameMontIf(int month){
 
 
 boolean igual=false;
@@ -55,7 +75,7 @@ boolean igual=false;
 	}
 }
 
- public boolean isSameDay(int day){
+ public boolean isSameDayIf(int day){
 
 boolean igual=false;
 
@@ -75,13 +95,30 @@ boolean igual=false;
 
 boolean igual=false;
 
-return igual;
+if((this._year==date.getYear())&& (this._month==date.getMonth()) &&(this._day==date.getDay())){
 
+ igual=true;
+
+}else{
+igual=false;
+}
+
+return igual;
 }
 
 
+public int getYear(){
+return this._year;
+}
 
-private int getDayOfMonth(int month){
+public int getMonth(){
+return this._month;
+}
+public int getDay(){
+return this._day;
+}
+
+private int DaysOfMonth(int month){
 
 int dias=0;
 	switch (month){
