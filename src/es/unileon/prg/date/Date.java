@@ -2,9 +2,9 @@ package es.unileon.prg.date;
 
 public class Date {
 
-	private int _day=5;
-	private int _month=12;
-	private int _year=2015;
+	private int _day;
+	private int _month;
+	private int _year;
 
 	public Date(int day, int month, int year) throws DateException{
 		this._year = year;
@@ -17,7 +17,7 @@ public class Date {
 		//TODO falta comprobar el dia
 
 
-		if ((day > 0) && (day < DaysOfMonth(month))) {
+		if ((day > 0) && (day <= daysOfMonth(month))) {
 			this._day = day;
 			
 		}else{
@@ -25,21 +25,22 @@ public class Date {
 					" Valores posibles entre 1 y 31.");
 		}
 	}
-public void isSameYear(int year){
 
- this._year=year;
+public boolean isSameYear(int year){
 
-}
-
-public void isSameMonth(int month){
-
- this._month=month;
+ return this._year==year;
 
 }
 
-public void isSameDay(int day){
+public boolean isSameMonth(int month){
 
- this._day=day;
+ return this._month==month;
+
+}
+
+public boolean isSameDay(int day){
+
+ return this._day==day;
 
 }
 
@@ -111,14 +112,49 @@ public int getYear(){
 return this._year;
 }
 
-public int getMonth(){
+public  int getMonth(){			
 return this._month;
 }
 public int getDay(){
 return this._day;
 }
 
-private int DaysOfMonth(int month){
+
+public int monthsAGo(int month){
+
+
+int resta= 12-month;
+
+return resta;
+}
+
+public String toString(Date date) {
+		return date.getDay() + "/" + date.getMonth() + "/" + date.getYear();
+	}
+
+
+
+
+public String monthsSameDays(){
+
+StringBuilder salida = new StringBuilder();
+
+int diasMes=daysOfMonth(this._month);
+
+for(int i=1; i<=12;i++){
+
+	if(daysOfMonth(i)==diasMes){
+
+	salida.append("\n "+monthName(i));
+	}
+}
+return salida.toString();
+}
+
+
+
+
+public int daysOfMonth(int month){
 
 int dias=0;
 	switch (month){
@@ -156,7 +192,7 @@ return dias;
 }
 
 
-private String getSeasonMonth(int month){
+public String getSeasonMonth(int month){
 
 String retorno="ERROR";
 
@@ -196,7 +232,7 @@ switch (month){
 return retorno;
 }
 
-private String getMonthName(int month){
+private String monthName(int month){
 
 String retorno="ERROR";
 
@@ -257,8 +293,8 @@ String retorno="ERROR";
 
 
 	}
-
 return retorno;
+
 }
 
 	@Override
