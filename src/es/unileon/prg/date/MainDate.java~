@@ -7,7 +7,7 @@ public class MainDate {
 		Date today;
 		Date tomorrow;
 		try {
-			today = new Date(10, 10, 2017);
+			today = new Date(30, 10, 2017);
 			tomorrow = new Date(15, 2, 2014);
 			System.out.println(today.monthsSameDays());
 

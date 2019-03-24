@@ -152,6 +152,21 @@ return salida.toString();
 }
 
 
+public String datesOfMonth(){
+
+
+/*int diasRestantes=daysOfMonth(this._month);
+
+for(int i=this.month;i<=diasRestantes;i++){
+
+	
+
+}
+
+*/
+ return null;
+}
+
 
 
 public int daysOfMonth(int month){
