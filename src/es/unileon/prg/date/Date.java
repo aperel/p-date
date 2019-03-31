@@ -2,23 +2,23 @@ package es.unileon.prg.date;
 
 public class Date {
 
-	private int _day;
-	private int _month;
-	private int _year;
+	private int day;
+	private int month;
+	private int year;
 
 	public Date(int day, int month, int year) throws DateException{
-		this._year = year;
+		this.year = year;
 		if (month < 1 || month > 12) {
 			throw new DateException("Mes " + month + " no valido" +
 					" Valores posibles entre 1 y 12.");
 		} else {
-			this._month = month;
+			this.month = month;
 		}
 		//TODO falta comprobar el dia
 
 
 		if ((day > 0) && (day <= daysOfMonth(month))) {
-			this._day = day;
+			this.day = day;
 			
 		}else{
 			throw new DateException("Dia " + day + " no valido" +
@@ -26,21 +26,49 @@ public class Date {
 		}
 	}
 
+	
+	public int getYear(){
+		return this.year;
+		}
+
+		public  int getMonth(){			
+		return this.month;
+		}
+		public int getDay(){
+		return this.day;
+		}
+
+
+		public void set_day(int _day) {
+			this.day = day;
+		}
+
+		public void set_month(int _month) {
+			this.month = month;
+		}
+
+		public void set_year(int _year) {
+			this.year = year;
+		}
+	
+	
+	
+	
 public boolean isSameYear(int year){
 
- return this._year==year;
+ return this.year==year;
 
 }
 
 public boolean isSameMonth(int month){
 
- return this._month==month;
+ return this.month==month;
 
 }
 
 public boolean isSameDay(int day){
 
- return this._day==day;
+ return this.day==day;
 
 }
 
@@ -50,7 +78,7 @@ public boolean isSameYearIf(int year){
 
 boolean igual= false;
 
-	if (year==_year){
+	if (this.year==year){
 
 	return true;
 
@@ -66,7 +94,7 @@ public boolean isSameMontIf(int month){
 boolean igual=false;
 
 
-	if (month==_month){
+	if (this.month==month){
 
 	return true;
 
@@ -80,7 +108,7 @@ boolean igual=false;
 
 boolean igual=false;
 
-	if (day==_day){
+	if (this.day==day){
 
 	return true;
 
@@ -96,7 +124,7 @@ boolean igual=false;
 
 boolean igual=false;
 
-if((this._year==date.getYear())&& (this._month==date.getMonth()) &&(this._day==date.getDay())){
+if((this.year==date.getYear())&& (this.month==date.getMonth()) &&(this.day==date.getDay())){
 
  igual=true;
 
@@ -108,19 +136,9 @@ return igual;
 }
 
 
-public int getYear(){
-return this._year;
-}
-
-public  int getMonth(){			
-return this._month;
-}
-public int getDay(){
-return this._day;
-}
 
 
-public int monthsAGo(int month){
+public int getMonthsLeft(int month){
 
 
 int resta= 12-month;
@@ -128,24 +146,24 @@ int resta= 12-month;
 return resta;
 }
 
-public String toString(Date date) {
+/*public String toString(Date date) {
 		return date.getDay() + "/" + date.getMonth() + "/" + date.getYear();
 	}
 
-
+*/
 
 
 public String monthsSameDays(){
 
 StringBuilder salida = new StringBuilder();
 
-int diasMes=daysOfMonth(this._month);
+int diasMes=daysOfMonth(this.month);
 
 for(int i=1; i<=12;i++){
 
 	if(daysOfMonth(i)==diasMes){
 
-	salida.append("\n "+monthName(i));
+	salida.append("\n "+getMonthName(i));
 	}
 }
 return salida.toString();
@@ -207,7 +225,7 @@ return dias;
 }
 
 
-public String getSeasonMonth(int month){
+public String getSeasonName(int month){ 
 
 String retorno="ERROR";
 
@@ -216,26 +234,26 @@ switch (month){
 	case 1:
 	case 2:
 	case 3:
-	retorno="Invierno";
+	retorno="Winter";
 	break;
 
 	case 4:
 	case 5:
 	case 6:
-	retorno="Primavera";
+	retorno="Spring";
 	break;
 	
 	case 7:
 	case 8:
 	case 9:
-	retorno="Verano";
+	retorno="Summer";
 	break;
 
 
 	case 10:
 	case 11:
 	case 12:
-	retorno="Otoño";
+	retorno="Autumn";
 	break;
 
 	default:
@@ -247,58 +265,58 @@ switch (month){
 return retorno;
 }
 
-private String monthName(int month){
+public String getMonthName(int month){
 
 String retorno="ERROR";
 
 	switch (month){
 
 	case 1:
-	retorno="Enero";
+	retorno="January";
 	break;
 
 	case 2:
-	retorno="Febrero";
+	retorno="February";
 	break;
 
 	case 3:
-	retorno="Marzo";
+	retorno="March";
 	break;
 
 	case 4:
-	retorno="Abril";
+	retorno="April";
 	break;
 
 	case 5:
-	retorno="Mayo";
+	retorno="May";
 	break; 
 
 	case 6:
-	retorno="Junio";
+	retorno="Juny";
 	break;
 
 	case 7:
-	retorno="Julio";
+	retorno="July";
 	break;
 
 	case 8:
-	retorno="Agosto";
+	retorno="August";
 	break;
 
 	case 9:
-	retorno="Septiembre";
+	retorno="September";
 	break;
 
 	case 10:
-	retorno="Octubre";
+	retorno="October";
 	break;
 
 	case 11:
-	retorno="Noviembre";
+	retorno="November";
 	break;
 
 	case 12:
-	retorno="Diciembre";
+	retorno="December";
 	break;
 
 
@@ -314,7 +332,7 @@ return retorno;
 
 	@Override
 	public String toString() {
-		return this._day + "/" + this._month + "/" + this._year;
+		return this.day + "/" + this.month + "/" + this.year;
 	}
 
 }
